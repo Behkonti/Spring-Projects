@@ -21,6 +21,7 @@ public class ClientController {
     @Autowired
     CoffeeRepo coffeeRepo;
 
+
     @GetMapping
     public String viewHome(Model model, HttpSession session) {
 
@@ -46,6 +47,8 @@ public class ClientController {
     @PostMapping("/login2")
     public String login(@Param("uname") String uname,@Param("pass") String pass,HttpSession session) {
         Client client = clientRepo.findClientByLoginPassword(uname, pass);
+
+
         if (client!= null) {
 
             System.out.println(uname+""+pass);
@@ -110,7 +113,7 @@ public class ClientController {
     @GetMapping("/user/home")
     public String userHome(Model model) {
 
-        return "user_home"; 
+        return "user_home";
     }
 }
 */
