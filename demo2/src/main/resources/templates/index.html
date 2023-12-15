@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Hi</h1>
+<form action="#" th:action="@{/login}"th:object="${client}"method="post">
+<input type="text"th:field="*{login}">
+    <input type="text"th:field="*{password}">
+    <button type="submit">Login</button>
+</form>
+
+<div th:each="coffee:${coffees}">
+    <h1 th:text="${coffee.getCofname()}+${coffee.getCoffeeid()}"></h1>
+    <a th:href="@{/additem/{id}(id=${coffee.getCoffeeid()})}">add</a>
+</div>
+
+<div th:each="item:${items}">
+
+    <h1 th:text="'Itemid:'+${item.getId()}+'ItemCoffee:'+${item.getCoffee().getCofname()}+'Quantity:'+${item.getQuantity()}"></h1>
+</div>
+</body>
+</html>

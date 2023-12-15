@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Orders</title>
+</head>
+<body>
+<h1>Hi</h1>
+<th:block th:with="oni=${1}">
+<div th:each="order:${ordersList}">
+
+    <h1 th:text="'Itemid:'+${order.getId()}"></h1>
+
+    <div th:each="item:${orderrepo.findItemByOrder(order.getId())}">
+
+        <h1 th:text="${item.getId()}"></h1>
+        <h1 th:text="${item.getCoffee().getCofname()}"></h1>
+    </div>
+    <div th:with="var=${order.getId()}">
+
+        <h1 th:text="${var}"></h1>
+    </div>
+
+
+
+
+
+</div>
+
+<div th:with="years= ${{'1,2,3' }}">
+    <div th:each="ii:${years}">
+    <h1 th:text="${ii}"></h1>
+</div>
+</div>
+
+    <div th:each="p:${#numbers.sequence(2023,2020,-1)}">
+        <div th:each="l:${#numbers.sequence(1,12,1)}">
+
+
+                   <h1 th:if="${orderrepo.getOrder(p,l,8,1)} !=null"th:text="${p}+'month:'+${l}"></h1>
+                   <h1 th:text="${l}"></h1>
+                <th:block th:each="z:${orderrepo.getOrder(p,l,8,1)}">
+
+                   <h1 th:text="'Orderid:'+${z.getId()}+'Time:'+${z.getLocaldate().toString()}"></h1>
+                </th:block>
+
+
+                   <!--/*@thymesVar id="myList" type="com"*/-->
+<div th:unless="${orderrepo.getOrder(p,l,8,1)} ==null">
+    <h2>Hi</h2>
+</div>
+
+
+
+        </div>
+    </div>
+<div th:with="col=${orderrepo.count()}">
+
+</div>
+<h1 th:text="${col}"></h1>
+    <h1 th:text="${oni}"></h1>
+</th:block>
+
+</body>
+</html>
