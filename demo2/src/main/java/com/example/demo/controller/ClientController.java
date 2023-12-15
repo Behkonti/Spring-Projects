@@ -55,3 +55,62 @@ public class ClientController {
     }
 
 }
+/*
+@Controller
+public class ClientController {
+    @Autowired
+    ClientRepo clientRepo;
+
+    @Autowired
+    CoffeeRepo coffeeRepo;
+
+    @GetMapping
+    public String viewHome(Model model, HttpSession session) {
+        List<Coffee> coffees = coffeeRepo.findall();
+        model.addAttribute("coffees", coffees);
+
+        List<Item> items = (List<Item>) session.getAttribute("item");
+        model.addAttribute("items", items);
+
+        return "index2";
+    }
+
+    @GetMapping("/loginpage")
+    public String loginpage() {
+        return "login";
+    }
+
+    @PostMapping("/login2")
+    public String login(@Param("uname") String uname, @Param("pass") String pass, HttpSession session) {
+        Client client = clientRepo.findClientByLoginPassword(uname, pass);
+
+        if (client != null) {
+            System.out.println(uname + " " + pass);
+            session.setAttribute("client", client);
+
+            if (client.isAdmin()) {
+                // Если пользователь является администратором
+                return "redirect:/admin/home"; //
+            } else {
+                // Если пользователь не администратор
+                return "redirect:/user/home"; //
+            }
+        }
+
+        // Логин и/или пароль неверны
+        return "redirect:/loginpage"; //
+    }
+
+    @GetMapping("/admin/home")
+    public String adminHome(Model model) {
+
+        return "admin_home";
+    }
+
+    @GetMapping("/user/home")
+    public String userHome(Model model) {
+
+        return "user_home"; 
+    }
+}
+*/
